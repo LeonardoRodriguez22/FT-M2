@@ -1,0 +1,51 @@
+// Código de Nav acá
+nav{
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    .flex-hor();
+    .flex-vert();
+    background-color: @nav-bg;
+    border-bottom:2px solid @nav-border;
+}
+h2{
+    margin: 3rem;
+}
+ul{
+    // display: flex;
+    // flex-direction:row;
+    .flex-hor();
+    font-size: 1.5rem;
+    font-weight: 600;
+    
+    li + li{
+        margin-left: 2rem;
+    }
+}
+li{
+    cursor: pointer;
+    position: relative;
+
+
+    &::after{
+        transition: .5s;
+        position: absolute;
+        content: "";
+        border-bottom: 4px solid @ebony-clay;
+        top: 140%;
+        left: 50%;
+        right: 50%;
+        width: 0%;
+        border-top-left-radius:0.5rem ;
+        border-top-right-radius: 0.5rem;
+    }
+
+    &:hover{
+        &::after{
+        left: 0%;
+        right: 0%;
+        width: 100%;
+        }
+
+    }
+}
