@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import Caja from '../../assets/caja.png';
 import './form.css';
+import {addProduct} from "../../redux/actions/actions" 
 
 class Form extends React.Component{
    constructor(props){
@@ -12,6 +13,13 @@ class Form extends React.Component{
          price: "",
          id: ""
       }
+   }
+
+   handleSubmit = ()=>{
+      addProduct({
+         ...product,
+         id: Date.now()
+      })
    }
 
    handleInputChange = (event) => {
@@ -38,13 +46,19 @@ class Form extends React.Component{
                   value={this.state.price}
                />
             </div>
-            <button className='formBtn'>¡ADD!</button>
+            <button onClick={this.handleSubmit} className='formBtn'>¡ADD!</button>
             <img src={Caja} alt='' className='logo' />
          </form>
       )
    }
 }
 
-export function mapDispatchToProps() {}
+export function mapDispatchToProps(dispatch) {
+   return {
+      addProduct : function(product){
+         dispatch(addProduct(product))
+      }
+   }
+}
 
 export default connect(null, mapDispatchToProps)(Form);
